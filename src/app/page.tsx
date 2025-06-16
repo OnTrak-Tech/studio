@@ -1,25 +1,73 @@
+// Ensure "use client" is at the top if you're using hooks like useState and useEffect
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { designs } from '@/lib/designs';
 import { PortfolioItemCard } from '@/components/PortfolioItemCard';
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
+
+const heroBackgrounds = [
+  { url: "https://placehold.co/1600x800.png", hint: "fashion texture" },
+  { url: "https://placehold.co/1600x800.png", hint: "silk drape" },
+  { url: "https://placehold.co/1600x800.png", hint: "geometric pattern" },
+];
 
 export default function Home() {
   const featuredDesigns = designs.slice(0, 3);
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [imageOpacityClass, setImageOpacityClass] = useState("opacity-20"); // Initial state for the image opacity
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setImageOpacityClass("opacity-0"); // Start fade out
+
+      // Wait for fade-out to (nearly) complete, then change image and trigger fade-in
+      setTimeout(() => {
+        setCurrentBgIndex((prevIndex) => (prevIndex + 1) % heroBackgrounds.length);
+        // The new image component will be mounted due to the 'key' prop changing.
+        // The useEffect below will handle making it visible.
+      }, 750); // This duration should align with the CSS transition duration for opacity
+    }, 10000); // Change image every 10 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, []);
+
+  useEffect(() => {
+    // This effect runs when currentBgIndex changes (meaning a new image is intended to be shown)
+    // or when imageOpacityClass has just been set to "opacity-0" by the interval.
+    // If the image source has just changed (currentBgIndex updated) and the old image faded out,
+    // we now need to fade in the new image.
+    if (imageOpacityClass === "opacity-0") {
+      // After a very brief delay (to ensure the new image with key is in DOM and starts at opacity-0),
+      // set class to make it fade to opacity-20
+      const fadeInTimeout = setTimeout(() => {
+        setImageOpacityClass("opacity-20");
+      }, 50); // Short delay
+      return () => clearTimeout(fadeInTimeout);
+    }
+  }, [currentBgIndex, imageOpacityClass]);
+
 
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Hero Section */}
       <section className="relative text-center py-20 md:py-32 rounded-lg overflow-hidden bg-gradient-to-br from-primary to-accent">
         <Image
-          src="https://placehold.co/1600x800.png"
+          key={currentBgIndex} // Crucial: Forces React to re-render the Image component when index changes
+          src={heroBackgrounds[currentBgIndex].url}
           alt="Abstract fashion background"
           layout="fill"
           objectFit="cover"
-          className="opacity-20"
-          priority
-          data-ai-hint="abstract fashion"
+          className={cn(
+            "transition-opacity duration-750 ease-in-out", // CSS transition for opacity
+            imageOpacityClass // Applies "opacity-0" or "opacity-20"
+          )}
+          priority={currentBgIndex === 0} // Only the very first image is high priority
+          data-ai-hint={heroBackgrounds[currentBgIndex].hint}
         />
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="font-headline text-5xl md:text-7xl text-primary-foreground mb-6">
