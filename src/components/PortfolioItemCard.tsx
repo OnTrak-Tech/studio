@@ -11,7 +11,7 @@ interface PortfolioItemCardProps {
 
 export function PortfolioItemCard({ design }: PortfolioItemCardProps) {
   return (
-    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full bg-card">
+    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full bg-card group">
       <CardHeader className="p-0">
         <Link href={`/portfolio/${design.id}`} aria-label={`View details for ${design.title}`}>
           <div className="aspect-[3/4] relative w-full overflow-hidden">
