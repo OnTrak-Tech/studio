@@ -9,7 +9,7 @@ export function StitchMuseLogo(props: SVGProps<SVGSVGElement>) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
-      aria-label="Stitch Muse Logo"
+      aria-label="Pada Collections Logo"
     >
       <path
         d="M20 80C30 70 40 75 50 80C60 85 70 80 80 70"

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { StitchMuseLogo } from '@/components/icons/StitchMuseLogo';
+import { StitchMuseLogo } from '@/components/icons/StitchMuseLogo'; // We can rename/replace this logo component later if needed
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,9 +19,9 @@ export function Navbar() {
   return (
     <header className="bg-background shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 text-primary hover:text-accent transition-colors duration-300" aria-label="Stitch Muse Home">
+        <Link href="/" className="flex items-center gap-2 text-primary hover:text-accent transition-colors duration-300" aria-label="Pada Collections Home">
           <StitchMuseLogo className="h-8 w-8 md:h-10 md:w-10" />
-          <span className="font-headline text-2xl md:text-3xl">Stitch Muse</span>
+          <span className="font-headline text-2xl md:text-3xl">Pada Collections</span>
         </Link>
 
         <nav className="hidden md:flex space-x-6 items-center">

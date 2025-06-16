@@ -23,7 +23,7 @@ export default function Home() {
         />
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="font-headline text-5xl md:text-7xl text-primary-foreground mb-6">
-            Stitch Muse
+            Pada Collections
           </h1>
           <p className="font-body text-xl md:text-2xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto">
             Crafting unique narratives through bespoke fashion. Discover elegance, innovation, and artistry in every stitch.
@@ -49,7 +49,7 @@ export default function Home() {
             data-ai-hint="designer portrait"
           />
           <p className="font-body text-lg text-foreground/80 leading-relaxed">
-            Welcome to Stitch Muse, where fashion transcends mere clothing to become a form of personal expression. 
+            Welcome to Pada Collections, where fashion transcends mere clothing to become a form of personal expression. 
             With a decade of experience in haute couture and bespoke design, I blend timeless techniques with contemporary vision. 
             Each piece is a labor of love, meticulously crafted to tell a unique story and empower the wearer.
           </p>

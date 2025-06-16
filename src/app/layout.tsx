@@ -5,8 +5,8 @@ import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Stitch Muse',
-  description: 'Fashion design by Stitch Muse. Discover unique creations and AI-powered design assistance.',
+  title: 'Pada Collections',
+  description: 'Fashion design by Pada Collections. Discover unique creations and AI-powered design assistance.',
 };
 
 export default function RootLayout({
